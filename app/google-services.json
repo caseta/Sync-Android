@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "324658482427",
+    "firebase_url": "https://sync-36b59.firebaseio.com",
+    "project_id": "sync-36b59",
+    "storage_bucket": "sync-36b59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324658482427:android:bb4a524ca9dadb3f",
+        "android_client_info": {
+          "package_name": "com.taylorcase.sync"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324658482427-no8e646r53neha7num9hnicthb9inba2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDccS68W1kTMJaHQgjgXNEF2_F9UKJWzsg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
