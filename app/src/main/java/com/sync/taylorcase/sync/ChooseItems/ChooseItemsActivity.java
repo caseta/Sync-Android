@@ -1,22 +1,68 @@
 package com.sync.taylorcase.sync.ChooseItems;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.R;
+
+import java.util.ArrayList;
 
 public class ChooseItemsActivity extends AppCompatActivity {
 
     ListView listView;
+    DatabaseReference database;
+    ArrayList<String> itemNames;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_choose_items);
         listView = (ListView) findViewById(R.id.choose_items_list_view);
-        listView.setAdapter(new ChooseItemsAdapter(this, new String[]{"one", "two"}));
+
+        database = FirebaseDatabase.getInstance().getReference();
+
+
+        populateDataArray();
     }
+
+    public void populateDataArray() {
+
+        database.child("items").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                itemNames = new ArrayList<String>();
+
+                for (DataSnapshot item: dataSnapshot.getChildren()) {
+                    String name = item.getKey();
+                    itemNames.add(name);
+                }
+
+                callAdapter(itemNames);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //TODO: error
+            }
+        });
+    }
+
+    public void callAdapter(ArrayList<String> itemNames) {
+        context = getApplicationContext();
+        listView.setAdapter(new ChooseItemsAdapter(this, itemNames));
+    }
+
 }
 
 

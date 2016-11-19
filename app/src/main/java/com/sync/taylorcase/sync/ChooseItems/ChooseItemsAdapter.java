@@ -9,13 +9,15 @@ import android.widget.TextView;
 
 import com.sync.taylorcase.sync.R;
 
+import java.util.ArrayList;
+
 public class ChooseItemsAdapter extends BaseAdapter {
 
     Context context;
-    String[] items;
+    ArrayList<String> items;
     private static LayoutInflater inflater = null;
 
-    public ChooseItemsAdapter(Context context, String[] items) {
+    public ChooseItemsAdapter(Context context, ArrayList<String> items) {
         this.context = context;
         this.items = items;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -23,12 +25,12 @@ public class ChooseItemsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return items.length;
+        return items.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return items[position];
+        return items.get(position);
     }
 
     @Override
@@ -42,50 +44,7 @@ public class ChooseItemsAdapter extends BaseAdapter {
         if (view == null)
             view = inflater.inflate(R.layout.custom_item_row, null);
         TextView text = (TextView) view.findViewById(R.id.item_text);
-        text.setText(items[position]);
+        text.setText(items.get(position));
         return view;
     }
 }
-
-
-
-//    Context context;
-//    String[] data;
-//    private static LayoutInflater inflater = null;
-//
-//    public yourAdapter(Context context, String[] data) {
-//        // TODO Auto-generated constructor stub
-//        this.context = context;
-//        this.data = data;
-//        inflater = (LayoutInflater) context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        // TODO Auto-generated method stub
-//        return data.length;
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        // TODO Auto-generated method stub
-//        return data[position];
-//    }
-//
-//    @Override
-//    public long getItemId(int position) {
-//        // TODO Auto-generated method stub
-//        return position;
-//    }
-//
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        // TODO Auto-generated method stub
-//        View vi = convertView;
-//        if (vi == null)
-//            vi = inflater.inflate(R.layout.row, null);
-//        TextView text = (TextView) vi.findViewById(R.id.text);
-//        text.setText(data[position]);
-//        return vi;
-//    }
