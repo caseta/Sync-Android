@@ -42,6 +42,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         setContentView(R.layout.view_login);
         ButterKnife.bind(this);
 
+        context = getApplicationContext();
+        Intent intent = new Intent(context, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        context.startActivity(intent);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         presenter = new LoginPresenterImpl();
