@@ -20,7 +20,7 @@
         <activity android:name=".CreateGroup.CreateGroupActivity" />
         <activity android:name=".JoinGroup.JoinGroupActivity" />
         <activity android:name=".ChooseItems.ChooseItemsActivity" />
-        <activity android:name=".HowToActivity"/>
+        <activity android:name=".HowItWorksActivity"/>
     </application>
 
 </manifest>

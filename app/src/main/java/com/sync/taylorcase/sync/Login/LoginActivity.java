@@ -47,10 +47,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         // SKIP LOGIN   //
         //////////////////
 
-        context = getApplicationContext();
-        Intent intent = new Intent(context, HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        context.startActivity(intent);
+//        context = getApplicationContext();
+//        Intent intent = new Intent(context, HomeActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//        context.startActivity(intent);
 
         //////////////////
         // END  //////////

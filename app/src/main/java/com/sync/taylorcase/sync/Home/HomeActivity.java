@@ -69,6 +69,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         createNavMenu();
+
+        createGroupButton.setOnClickListener(this);
+        joinGroupButton.setOnClickListener(this);
     }
 
     @Override

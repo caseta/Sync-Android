@@ -13,7 +13,7 @@ import com.sync.taylorcase.sync.Home.HomeActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HowToActivity extends AppCompatActivity implements View.OnClickListener {
+public class HowItWorksActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Bind(R.id.how_it_works_button) Button submitButton;
 

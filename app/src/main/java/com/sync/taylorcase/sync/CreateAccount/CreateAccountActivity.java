@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.ChooseItems.ChooseItemsActivity;
 import com.sync.taylorcase.sync.Home.HomeActivity;
+import com.sync.taylorcase.sync.HowItWorksActivity;
 import com.sync.taylorcase.sync.R;
 import com.sync.taylorcase.sync.User;
 
@@ -57,6 +58,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
+        findViewById(R.id.create_loading).setVisibility(View.VISIBLE);
         context = getApplicationContext();
         int i = v.getId();
         if (i == R.id.create_account_submit) {
@@ -69,7 +71,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                                 Log.e("CREATE_ACCOUNT", "Auth successful");
                                 createUserInDatabase();
 
-                                Intent intent = new Intent(context, ChooseItemsActivity.class);
+                                findViewById(R.id.create_loading).setVisibility(View.GONE);
+                                Intent intent = new Intent(context, HowItWorksActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                                 context.startActivity(intent);
 

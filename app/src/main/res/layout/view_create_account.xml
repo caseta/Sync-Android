@@ -49,4 +49,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/create_account_submit" />
+
+    <RelativeLayout
+        android:id="@+id/create_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
 </LinearLayout>
