@@ -16,8 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sync.taylorcase.sync.CreateAccount.CreateAccountActivity;
+import com.sync.taylorcase.sync.Home.HomeActivity;
 import com.sync.taylorcase.sync.R;
-import com.sync.taylorcase.sync.mvp.MvpDelegateCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onClick(View v) {
+        findViewById(R.id.login_loading).setVisibility(View.VISIBLE);
         context = getApplicationContext();
         int i = v.getId();
         if (i == R.id.login_login_button) {
@@ -61,9 +62,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-//                            Intent intent = new Intent(context, CreateAccountActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-//                            context.startActivity(intent);
+
+                            if (task.isSuccessful()) {
+                                findViewById(R.id.login_loading).setVisibility(View.GONE);
+                                Intent intent = new Intent(context, HomeActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                context.startActivity(intent);
+                            } else {
+
+                            }
                         }
                     });
         } else if (i == R.id.login_create_account_button) {
