@@ -1,10 +1,12 @@
 package com.sync.taylorcase.sync.ChooseItems;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.sync.taylorcase.sync.R;
@@ -41,10 +43,12 @@ public class ChooseItemsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if (view == null)
+        if (view == null) {
             view = inflater.inflate(R.layout.custom_item_row, null);
+        }
         TextView text = (TextView) view.findViewById(R.id.item_text);
         text.setText(items.get(position));
+
         return view;
     }
 }

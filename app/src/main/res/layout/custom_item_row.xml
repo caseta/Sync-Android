@@ -13,18 +13,20 @@
         android:layout_weight="1"
         android:textSize="20sp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        app:srcCompat="@android:drawable/ic_menu_zoom"
-        android:id="@+id/image_like" />
-
-    <ImageButton
+    <CheckBox
+        android:text="Love"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/checkbox_off_background"
-        android:id="@+id/image_love"
+        android:id="@+id/love_checkbox"
         android:layout_weight="1" />
+
+    <CheckBox
+        android:text="Like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/like_checkbox"
+        android:layout_weight="1" />
+
 </LinearLayout>
 
 

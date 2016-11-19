@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.sync.taylorcase.sync.ChooseItems.ChooseItemsActivity"
     android:background="@color/colorPrimary">
 
@@ -23,6 +24,19 @@
         android:text="Done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/choose_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
 </LinearLayout>
 
