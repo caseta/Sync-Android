@@ -1,21 +1,26 @@
 package com.sync.taylorcase.sync.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sync.taylorcase.sync.CreateGroup.CreateGroupActivity;
+import com.sync.taylorcase.sync.JoinGroup.JoinGroupActivity;
 import com.sync.taylorcase.sync.R;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    @Bind(R.id.login_create_account_button) Button createAccountButton;
 //
@@ -41,6 +46,9 @@ public class HomeActivity extends AppCompatActivity {
 //        createAccountButton.setOnClickListener(this);
 //    }
 
+    @Bind(R.id.home_join_group_button) Button joinGroupButton;
+    @Bind(R.id.home_create_group_button) Button createGroupButton;
+
     private Context context;
     private ListView List;
     private ArrayAdapter<String> Adapter;
@@ -61,6 +69,23 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         createNavMenu();
+    }
+
+    @Override
+    public void onClick(View v) {
+        context = getApplicationContext();
+        int i = v.getId();
+        if (i == R.id.home_join_group_button) {
+            Intent intent = new Intent(context, JoinGroupActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else if (i == R.id.home_create_group_button) {
+            Intent intent = new Intent(context, CreateGroupActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else {
+            // TODO: error
+        }
     }
 
     //////////////////

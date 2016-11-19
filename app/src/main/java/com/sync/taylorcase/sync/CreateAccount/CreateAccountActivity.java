@@ -1,6 +1,7 @@
 package com.sync.taylorcase.sync.CreateAccount;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sync.taylorcase.sync.ChooseItems.ChooseItemsActivity;
+import com.sync.taylorcase.sync.Home.HomeActivity;
 import com.sync.taylorcase.sync.R;
 import com.sync.taylorcase.sync.User;
 
@@ -65,6 +68,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                             if (task.isSuccessful()) {
                                 Log.e("CREATE_ACCOUNT", "Auth successful");
                                 createUserInDatabase();
+
+                                Intent intent = new Intent(context, ChooseItemsActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                context.startActivity(intent);
+
                             } else {
                                 Log.e("CREATE_ACCOUNT", "Error authenticaing user");
                             }

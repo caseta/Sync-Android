@@ -17,6 +17,10 @@
         </activity>
         <activity android:name=".CreateAccount.CreateAccountActivity" />
         <activity android:name=".Home.HomeActivity" />
+        <activity android:name=".CreateGroup.CreateGroupActivity" />
+        <activity android:name=".JoinGroup.JoinGroupActivity" />
+        <activity android:name=".ChooseItems.ChooseItemsActivity" />
+        <activity android:name=".HowToActivity"/>
     </application>
 
 </manifest>
