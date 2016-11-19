@@ -2,9 +2,9 @@ package com.sync.taylorcase.sync;
 
 public class User {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    public String firstName;
+    public String lastName;
+    public String email;
 
     public User() {
 

@@ -13,9 +13,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.R;
+import com.sync.taylorcase.sync.User;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,15 +56,18 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         context = getApplicationContext();
         int i = v.getId();
-        if (i == R.id.login_create_account_button) {
+        if (i == R.id.create_account_submit) {
             firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.e("CREATE_ACCOUNT", "Auth successful");
-                            Log.e("CREATE_ACCOUNT", "Creating user in user node");
-                            createUserInDatabase();
+                            if (task.isSuccessful()) {
+                                Log.e("CREATE_ACCOUNT", "Auth successful");
+                                createUserInDatabase();
+                            } else {
+                                Log.e("CREATE_ACCOUNT", "Error authenticaing user");
+                            }
                         }
 
                     });
@@ -69,24 +77,56 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     public void createUserInDatabase() {
-        
+
+        Log.e("CREATE_ACCOUNT", "Creating user in user node");
+
+        User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString());
+
+        String userId = firebaseAuth.getCurrentUser().getUid();
+
+        database.child("users").child(userId).setValue(user);
+
+        // READING
+//        database.child("users").addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                //TODO: error
+//            }
+//        });
     }
+
 }
 
 
-//if (errorCode.length() == 1) {
-//        authObject.createUserWithEmailAndPassword(emailText, passwordText)
-//        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//@Override
-//public void onComplete(@NonNull Task<AuthResult> task) {
-//        if (task.isSuccessful()) {
-//        presenter.createNewUserInDatabase(task.getResult().getUser().getUid(), emailText, firstNameText, lastNameText, licenseText);
-//        presenter.goToHomeView(context);
-//        } else {
-//        // Error creating user
+//    // 4. GET ALL OF THE EVENT INFO
+//    public ArrayList<Event> createEventList(DataSnapshot snapshot) {
+//
+//        ArrayList<Event> events = new ArrayList<>();
+//
+//        for (DataSnapshot snapshotChild : snapshot.getChildren()) {
+//
+////            We could use the line below (very nice and clean) if we didn\'t
+////            need to get the event's name (AKA child.getKey();)
+//
+////            Event event = child.getValue(Event.class);
+//
+//            String eventName = snapshotChild.getKey();
+//            String eventAddress = snapshotChild.child("address").getValue().toString();
+//            String eventDate = snapshotChild.child("date").getValue().toString();
+//            String eventHalf = snapshotChild.child("half").getValue().toString();
+//            String eventMakeAvailable = snapshotChild.child("makeavailable").getValue().toString();
+//            String eventTime = snapshotChild.child("time").getValue().toString();
+//
+//            Event event = new Event(eventName, eventAddress, eventDate, eventHalf, eventMakeAvailable, eventTime);
+//
+//            events.add(event);
 //        }
-//        }
-//        });
-//        } else {
-//        presenter.displayError(context, errorCode);
-//        }
+//
+//        return events;
+//    }
