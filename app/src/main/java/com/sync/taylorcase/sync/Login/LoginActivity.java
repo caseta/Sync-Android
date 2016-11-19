@@ -1,19 +1,38 @@
 package com.sync.taylorcase.sync.Login;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sync.taylorcase.sync.CreateAccount.CreateAccountActivity;
 import com.sync.taylorcase.sync.R;
 import com.sync.taylorcase.sync.mvp.MvpDelegateCallback;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView, View.OnClickListener {
 //        , MvpDelegateCallback<LoginContract.LoginView, LoginContract.LoginPresenter> {
+
+    @Bind(R.id.login_username_textview) EditText usernameTextView;
+    @Bind(R.id.login_password_textview) EditText passwordTextView;
+    @Bind(R.id.login_login_button) Button loginButton;
+    @Bind(R.id.login_create_account_button) Button createAccountButton;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference database;
+    private Context context;
 
     LoginPresenterImpl presenter;
 
@@ -21,13 +40,54 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_login);
+        ButterKnife.bind(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         presenter = new LoginPresenterImpl();
 
         database = FirebaseDatabase.getInstance().getReference();
+
+        loginButton.setOnClickListener(this);
+        createAccountButton.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View v) {
+        context = getApplicationContext();
+        int i = v.getId();
+        if (i == R.id.login_login_button) {
+            firebaseAuth.signInWithEmailAndPassword(usernameTextView.getText().toString(), passwordTextView.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            Intent intent = new Intent(context, CreateAccountActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+//                            context.startActivity(intent);
+                        }
+                    });
+        } else if (i == R.id.login_create_account_button) {
+            Intent intent = new Intent(context, CreateAccountActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else {
+            //TODO: error
+        }
+    }
+
+//    hEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//        @Override
+//        public void onComplete(@NonNull Task<AuthResult> task) {
+//            if (task.isSuccessful()) {
+////                            findViewById(R.id.login_loading).setVisibility(View.GONE);
+//                presenter.goToHomeView(context);
+//            } else {
+//                Log.e(LOGIN_ACTIVITY_TAG, task.getException().getMessage());
+//                presenter.displayError(context, "Please enter the correct password");
+//            }
+//
+//        }
+//    });
 
 //    @Override
 //    public LoginContract.LoginPresenter createPresenter() {
