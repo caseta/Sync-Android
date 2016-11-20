@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,21 +8,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/puzzle_cyan"
+            android:layout_marginTop="-80dp"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/imageView3" />
 
         <Button
             android:text="Join Group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
             android:id="@+id/home_join_group_button"
-            android:layout_weight="1" />
+            />
 
         <Button
             android:text="Create Group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/home_create_group_button"
-            android:layout_weight="1" />
+            />
     </LinearLayout>
 
     <ListView

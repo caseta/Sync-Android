@@ -29,7 +29,6 @@ import butterknife.ButterKnife;
 public class CreateGroupActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Bind(R.id.create_group_name) EditText groupName;
-    @Bind(R.id.create_group_password) EditText password;
     @Bind(R.id.create_group_button) Button submitButton;
     @Bind(R.id.create_group_yes) RadioButton yesButton;
     @Bind(R.id.create_group_no) RadioButton noButton;

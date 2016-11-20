@@ -23,31 +23,37 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:inputType="textPersonName"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
         android:ems="10"
         android:id="@+id/login_username_textview"
-        android:hint="Email" />
+        android:hint="Email"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:inputType="textPassword"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
         android:ems="10"
         android:id="@+id/login_password_textview"
-        android:hint="Password" />
+        android:hint="Password"
+        android:textAlignment="center" />
 
     <Button
         android:text="Login"
         android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/login_login_button" />
 
     <Button
         android:text="Create An Account"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_create_account_button" />

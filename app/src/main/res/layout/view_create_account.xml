@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <EditText
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/create_account_first_name"
-        android:hint="First Name" />
+        app:srcCompat="@drawable/puzzle_cyan"
+        android:id="@+id/imageView4" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:id="@+id/create_account_first_name"
+        android:hint="First Name"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/create_account_last_name"
-        android:hint="Last Name" />
+        android:hint="Last Name"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/create_account_email"
-        android:hint="Email Address" />
+        android:hint="Email Address"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:id="@+id/create_account_password"
-        android:hint="Password" />
+        android:hint="Password"
+        android:textAlignment="center" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,7 +57,9 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/create_account_confirm_password"
-        android:hint="Confirm Password" />
+        android:hint="Confirm Password"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center" />
 
     <Button
         android:text="Create Account"

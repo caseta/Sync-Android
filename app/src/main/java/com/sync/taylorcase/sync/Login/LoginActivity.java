@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.sync.taylorcase.sync.ChooseItems.ChooseItemsActivity;
 import com.sync.taylorcase.sync.CreateAccount.CreateAccountActivity;
 import com.sync.taylorcase.sync.Home.HomeActivity;
+import com.sync.taylorcase.sync.HowItWorksActivity;
 import com.sync.taylorcase.sync.R;
 
 import butterknife.Bind;
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         //////////////////
 
 //        context = getApplicationContext();
-//        Intent intent = new Intent(context, ChooseItemsActivity.class);
+//        Intent intent = new Intent(context, HowItWorksActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 //        context.startActivity(intent);
 
