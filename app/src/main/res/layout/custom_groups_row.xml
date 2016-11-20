@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/custom_groups_row_text"
         android:layout_weight="1"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:textAlignment="center" />
 
 </LinearLayout>

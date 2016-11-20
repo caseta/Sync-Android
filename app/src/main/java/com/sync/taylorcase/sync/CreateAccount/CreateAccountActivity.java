@@ -58,7 +58,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        findViewById(R.id.create_loading).setVisibility(View.VISIBLE);
         context = getApplicationContext();
         int i = v.getId();
         if (i == R.id.create_account_submit) {
