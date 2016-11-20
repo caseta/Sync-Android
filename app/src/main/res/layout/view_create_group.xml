@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:gravity="center"
     android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/create_group_name"
+        android:hint="Group Name"
+        android:textSize="30sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/create_group_password"
+        android:textSize="18sp"
+        android:hint="Password (Optional)" />
+
+    <TextView
+        android:text="Do you want to join the group?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_group_ask"
+        android:textSize="20sp"
+        android:textAlignment="center" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/create_group_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YES PLEASE"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/create_group_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO THANKS" />
+
+    </RadioGroup>
+
+    <Button
+        android:text="Create Group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_group_button" />
+
+    <RelativeLayout
+        android:id="@+id/create_group_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
 </LinearLayout>
