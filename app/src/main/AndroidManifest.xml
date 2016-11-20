@@ -21,6 +21,7 @@
         <activity android:name=".JoinGroup.JoinGroupActivity" />
         <activity android:name=".ChooseItems.ChooseItemsActivity" />
         <activity android:name=".HowItWorksActivity"/>
+        <activity android:name=".AccountItems.AccountItemsClass"/>
     </application>
 
 </manifest>
