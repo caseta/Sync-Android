@@ -30,7 +30,8 @@ public class MySyncsActivity extends AppCompatActivity {
     Context context;
     DatabaseReference database;
     FirebaseAuth auth;
-    HashMap<String, ArrayList<String>> syncs;
+    ArrayList<String> groups;
+    ArrayList<String> names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +57,27 @@ public class MySyncsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                syncs = new HashMap<String, ArrayList<String>>();
+                groups = new ArrayList<String>();
+                names = new ArrayList<String>();
 
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     Log.e("YEET", "data is: " + child);
                     String synchedName = child.child("personSyncedWith").getValue().toString();
-                    HashMap<String, String> matchingItemsHash = (HashMap<String, String>) child.child("matchingItems").getValue();
-                    ArrayList<String> matchingItems = new ArrayList<String>();
+                    names.add(synchedName);
 
-                    for (String key: matchingItemsHash.keySet()) {
-                        matchingItems.add(key);
-                    }
+                    String groupName = child.child("groupName").getValue().toString();
+                    groups.add(groupName);
 
-                    syncs.put(synchedName, matchingItems);
+                    // use this later
+//                    HashMap<String, String> matchingItemsHash = (HashMap<String, String>) child.child("matchingItems").getValue();
+
+//                    for (String key: matchingItemsHash.keySet()) {
+//                        groups.add(key);
+//                    }
+
                 }
 
-                callAdapter(syncs);
+                callAdapter(groups, names);
 
 
             }
@@ -84,9 +90,9 @@ public class MySyncsActivity extends AppCompatActivity {
 
     }
 
-    public void callAdapter(HashMap<String, ArrayList<String>> syncs) {
+    public void callAdapter(ArrayList<String> groups, ArrayList<String> names) {
         context = getApplication();
-        listView.setAdapter(new MySyncsAdapter(this, syncs));
+        listView.setAdapter(new MySyncsAdapter(this, groups, names));
     }
 
 }

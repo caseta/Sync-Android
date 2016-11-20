@@ -9,15 +9,17 @@ public class Sync {
     public HashMap<String, String> matchingItems;
     public String personSyncedWith;
     public String personsUserId;
+    public String groupName;
 
     public Sync() {
 
     }
 
-    public Sync(HashMap<String, String> matchingItems, String personSyncedWith, String personsUserId) {
+    public Sync(HashMap<String, String> matchingItems, String personSyncedWith, String personsUserId, String groupName) {
         this.matchingItems = matchingItems;
         this.personSyncedWith = personSyncedWith;
         this.personsUserId = personsUserId;
+        this.groupName = groupName;
     }
 
 }

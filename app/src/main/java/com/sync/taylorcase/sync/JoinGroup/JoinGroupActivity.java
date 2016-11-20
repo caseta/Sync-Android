@@ -172,8 +172,8 @@ public class JoinGroupActivity extends AppCompatActivity {
                         String myFirstName = dataSnapshot.child("users").child(currentUserId).child("firstName").getValue().toString();
                         String theirFirstName = dataSnapshot.child("users").child(userIdsInGroup.get(i)).child("firstName").getValue().toString();
 
-                        Sync mySync = new Sync(matchingItemsHash, theirFirstName, userIdsInGroup.get(i));
-                        Sync theirSync = new Sync(matchingItemsHash, myFirstName, currentUserId);
+                        Sync mySync = new Sync(matchingItemsHash, theirFirstName, userIdsInGroup.get(i), groupName);
+                        Sync theirSync = new Sync(matchingItemsHash, myFirstName, currentUserId, groupName);
 
                         database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
                         database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);
