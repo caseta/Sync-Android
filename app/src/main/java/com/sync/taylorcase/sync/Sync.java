@@ -1,19 +1,20 @@
 package com.sync.taylorcase.sync;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Sync {
 
 //    public ArrayList<String> matchingItems;
-    public String firstMatch;
+    public HashMap<String, String> matchingItems;
     public String personSyncedWith;
 
     public Sync() {
 
     }
 
-    public Sync(ArrayList<String> matchingItems, String personSyncedWith) {
-        this.firstMatch = matchingItems.get(0);
+    public Sync(HashMap<String, String> matchingItems, String personSyncedWith) {
+        this.matchingItems = matchingItems;
         this.personSyncedWith = personSyncedWith;
     }
 

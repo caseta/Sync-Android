@@ -22,6 +22,7 @@ import com.sync.taylorcase.sync.R;
 import com.sync.taylorcase.sync.Sync;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -154,15 +155,25 @@ public class JoinGroupActivity extends AppCompatActivity {
 
                     matchingItems = matchItems(myItems, theirItems);
 
+                    HashMap<String, String> matchingItemsHash = new HashMap<String, String>();
+
+                    // Fill up the HashMap
+
                     Log.e("YEET", "matching items: " + matchingItems);
 
                     if (matchingItems.size() > 0) {
 
+
+                        for (int k = 0; k < matchingItems.size(); k++) {
+                            matchingItemsHash.put(matchingItems.get(k), "love");
+                        }
+
+
                         String myFirstName = dataSnapshot.child("users").child(currentUserId).child("firstName").getValue().toString();
                         String theirFirstName = dataSnapshot.child("users").child(userIdsInGroup.get(i)).child("firstName").getValue().toString();
 
-                        Sync mySync = new Sync(matchingItems, theirFirstName);
-                        Sync theirSync = new Sync(matchingItems, myFirstName);
+                        Sync mySync = new Sync(matchingItemsHash, theirFirstName);
+                        Sync theirSync = new Sync(matchingItemsHash, myFirstName);
 
                         database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
                         database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);
