@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.sync.taylorcase.sync.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -53,7 +54,9 @@ public class MySyncsAdapter extends BaseAdapter {
         TextView textView3 = (TextView) view.findViewById(R.id.my_syncs_textview_3);
         TextView textView4 = (TextView) view.findViewById(R.id.my_syncs_textview_4);
 
-        ArrayList<String> matchingItems = syncs.get("vish");
+        ArrayList<String> keys = getAllKeys();
+
+        ArrayList<String> matchingItems = syncs.get(keys.get(0));
 
         Log.e("YEET", "syncs is: " + syncs);
         Log.e("YEET", "matchingItems is: " + matchingItems);
@@ -85,6 +88,14 @@ public class MySyncsAdapter extends BaseAdapter {
         }
 
         return view;
+    }
+
+    public ArrayList<String> getAllKeys() {
+        ArrayList<String> keys = new ArrayList<>();
+        for (String key : syncs.keySet()) {
+            keys.add(key);
+        }
+        return keys;
     }
 
     public String getKeyAt(int position) {
