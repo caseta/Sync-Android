@@ -114,25 +114,9 @@ public class ChooseItemsActivity extends AppCompatActivity implements View.OnCli
         for (int i = 0; i < 3; i++) {
             view = listView.getChildAt(i);
             loveCheckbox = (CheckBox) view.findViewById(R.id.love_checkbox);
-            likeCheckbox = (CheckBox) view.findViewById(R.id.like_checkbox);
 
-            if (loveCheckbox.isChecked() && !(likeCheckbox.isChecked())) {
-                userPicksItemNames.add(itemNames.get(i));
-                userPicksLoveSelected.add("1");
-                userPicksLikeSelected.add("0");
-            } else if (likeCheckbox.isChecked() && !(loveCheckbox.isChecked())) {
-                userPicksItemNames.add(itemNames.get(i));
-                userPicksLoveSelected.add("0");
-                userPicksLikeSelected.add("1");
-            } else if (loveCheckbox.isChecked() && likeCheckbox.isChecked()) {
-                userPicksItemNames.add(itemNames.get(i));
-                userPicksLoveSelected.add("1");
-                userPicksLikeSelected.add("1");
-            } else {
-                // NO CHECK BOXES SELECTED FOR THIS ONE
-
-                // OR ERROR LOL
-            }
+            userPicksItemNames.add(itemNames.get(i));
+            userPicksLoveSelected.add("1");
 
         }
 
@@ -146,7 +130,7 @@ public class ChooseItemsActivity extends AppCompatActivity implements View.OnCli
 
         for (int i = 0; i < userPicksItemNames.size(); i++) {
             String name = userPicksItemNames.get(i);
-            Item item = new Item(userPicksLoveSelected.get(i), userPicksLikeSelected.get(i));
+            Item item = new Item(userPicksLoveSelected.get(i));
 
             database.child("users").child(userId).child("myItems").child(name).setValue(item);
         }
