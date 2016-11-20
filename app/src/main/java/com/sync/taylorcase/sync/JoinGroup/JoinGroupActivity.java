@@ -128,7 +128,7 @@ public class JoinGroupActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                String currentUserId = auth.getCurrentUser().getUid();
+                final String currentUserId = auth.getCurrentUser().getUid();
 
                 userIdsInGroup = new ArrayList<String>();
 
@@ -139,8 +139,33 @@ public class JoinGroupActivity extends AppCompatActivity {
                     }
                 }
 
-                Log.e("YEET_TAG", "userIds: in grou: " + userIdsInGroup);
                 // We have all user IDs, time to match
+                for (int i = 0; i < userIdsInGroup.size(); i++) {
+
+                    final int finalI = i;
+                    database.addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            ArrayList<String> myItems = getItemsForUser(currentUserId);
+                            ArrayList<String> theirItems = getItemsForUser(userIdsInGroup.get(finalI));
+
+                            Log.e("BEEN_HAD_TAG", "my items: " + myItems);
+                            Log.e("BEEN_HAD_TAG", "their items: " + theirItems);
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                } // end of for(...)
+
+
 
             }
 
@@ -151,6 +176,34 @@ public class JoinGroupActivity extends AppCompatActivity {
         });
 
     }
+
+    public ArrayList<String> getItemsForUser(String userId) {
+
+        final ArrayList<String> listOfItems = new ArrayList<>();
+
+        database.child("users").child(userId).child("myItems").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    String itemName = item.getKey();
+                    Log.e("BEEN_HAD", "adding: " + itemName);
+                    listOfItems.add(itemName);
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        Log.e("BEEN_HAD", "about to return this listOfItems: " + listOfItems);
+        return listOfItems;
+    }
+
 
 
 }
