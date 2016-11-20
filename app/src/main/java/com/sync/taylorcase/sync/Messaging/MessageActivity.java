@@ -57,13 +57,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         int i = v.getId();
         if (i == R.id.fab) {
             // post to MINE
-            database.child("users").child(currentUserId).child("mySyncs").child(id).child("messages")
+            database.child("users").child(currentUserId).child("mySyncs").child(id).child("messages").push()
                     .setValue(new ChatMessage(input.getText().toString(),
                             FirebaseAuth.getInstance().getCurrentUser().getDisplayName()
                     ));
 
             // post to THEIRS
-            database.child("users").child(id).child("mySyncs").child(currentUserId).child("messages")
+            database.child("users").child(id).child("mySyncs").child(currentUserId).child("messages").push()
                     .setValue(new ChatMessage(input.getText().toString(),
                             FirebaseAuth.getInstance().getCurrentUser().getDisplayName()
                     ));
