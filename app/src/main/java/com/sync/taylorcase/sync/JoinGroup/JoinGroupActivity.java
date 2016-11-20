@@ -58,13 +58,13 @@ public class JoinGroupActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                findViewById(R.id.choose_loading).setVisibility(View.VISIBLE);
+                findViewById(R.id.choose_loading).setVisibility(View.VISIBLE);
 
                 joinTheGroup(groupNames.get(position));
 
                 calculateSyncs(groupNames.get(position));
 
-//                findViewById(R.id.create_loading).setVisibility(View.GONE);
+                findViewById(R.id.choose_loading).setVisibility(View.GONE);
                 navigateToSyncs();
             }
         });
@@ -172,8 +172,8 @@ public class JoinGroupActivity extends AppCompatActivity {
                         String myFirstName = dataSnapshot.child("users").child(currentUserId).child("firstName").getValue().toString();
                         String theirFirstName = dataSnapshot.child("users").child(userIdsInGroup.get(i)).child("firstName").getValue().toString();
 
-                        Sync mySync = new Sync(matchingItemsHash, theirFirstName);
-                        Sync theirSync = new Sync(matchingItemsHash, myFirstName);
+                        Sync mySync = new Sync(matchingItemsHash, theirFirstName, userIdsInGroup.get(i));
+                        Sync theirSync = new Sync(matchingItemsHash, myFirstName, currentUserId);
 
                         database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
                         database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);

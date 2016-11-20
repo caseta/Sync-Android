@@ -58,7 +58,7 @@ public class ChooseItemsActivity extends AppCompatActivity implements View.OnCli
 
     public void populateDataArray() {
 
-        database.child("items").addValueEventListener(new ValueEventListener() {
+        database.child("items").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
