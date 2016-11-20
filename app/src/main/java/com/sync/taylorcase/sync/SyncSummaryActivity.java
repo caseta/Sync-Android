@@ -1,6 +1,7 @@
 package com.sync.taylorcase.sync;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sync.taylorcase.sync.Messaging.MessageActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,6 +128,10 @@ public class SyncSummaryActivity extends AppCompatActivity implements View.OnCli
         int i = v.getId();
         if (i == R.id.sync_summary_message_button) {
             // OPEN CHAT WINDOW
+            Intent intent = new Intent(context, MessageActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            intent.putExtra("ID", id);
+            context.startActivity(intent);
         } else {
             // TODO: error
         }

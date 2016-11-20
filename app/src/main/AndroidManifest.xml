@@ -24,6 +24,7 @@
         <activity android:name=".AccountItems.AccountItemsClass"/>
         <activity android:name=".MySyncs.MySyncsActivity" />
         <activity android:name=".SyncSummaryActivity" />
+        <activity android:name=".Messaging.MessageActivity"/>
     </application>
 
 </manifest>
