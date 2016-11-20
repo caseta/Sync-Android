@@ -17,7 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
