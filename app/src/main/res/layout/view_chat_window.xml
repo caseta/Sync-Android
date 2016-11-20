@@ -16,9 +16,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/puzzle_cyan"
+        android:src="@drawable/ic_add_circle_outline_black_24dp"
         android:id="@+id/fab"
         android:tint="@android:color/white"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         app:fabSize="mini" />
@@ -48,4 +52,19 @@
         android:divider="@android:color/transparent"
         android:id="@+id/list_of_messages"
         android:layout_marginBottom="16dp"/>
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ListView
+            android:id="@+id/chat_navList"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|start"
+            android:background="@color/colorAccent"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+
 </RelativeLayout>

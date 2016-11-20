@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_login);
         ButterKnife.bind(this);
-
+        findViewById(R.id.login_loading).setVisibility(View.GONE);
 
         //////////////////
         // SKIP LOGIN   //
@@ -74,7 +74,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         context = getApplicationContext();
         int i = v.getId();
         if (i == R.id.login_login_button) {
-            firebaseAuth.signInWithEmailAndPassword(usernameTextView.getText().toString(), passwordTextView.getText().toString())
+
+            String emailText = usernameTextView.getText().toString().replaceAll("\\s+","");
+            String passwordText = passwordTextView.getText().toString().replaceAll("\\s+","");
+
+            firebaseAuth.signInWithEmailAndPassword(emailText, passwordText)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

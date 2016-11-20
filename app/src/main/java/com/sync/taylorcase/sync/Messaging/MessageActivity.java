@@ -1,12 +1,15 @@
 package com.sync.taylorcase.sync.Messaging;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +18,9 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sync.taylorcase.sync.AccountItems.AccountItemsClass;
+import com.sync.taylorcase.sync.Home.HomeActivity;
+import com.sync.taylorcase.sync.MySyncs.MySyncsActivity;
 import com.sync.taylorcase.sync.R;
 
 import butterknife.Bind;
@@ -25,6 +31,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     @Bind(R.id.fab) FloatingActionButton fab;
     @Bind(R.id.input) EditText input;
 
+    private ListView List;
+
     Context context;
     DatabaseReference database;
     FirebaseAuth auth;
@@ -32,6 +40,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     String currentUserId;
 
     private FirebaseListAdapter<ChatMessage> adapter;
+    private ArrayAdapter<String> Adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,15 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
         fab.setOnClickListener(this);
 
+        List = (ListView) findViewById(R.id.chat_navList);
+
+        List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                navBarItemClicked(position);
+            }
+        });
+
         database = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
 
@@ -48,6 +66,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         currentUserId = auth.getCurrentUser().getUid();
 
         displayChatMessages();
+
+        createNavMenu();
 
     }
 
@@ -105,6 +125,32 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         listOfMessages.setAdapter(adapter);
         Log.e("YEETxxxxx", "4");
 
+    }
+
+    private void createNavMenu() {
+        String[] options = {"Home", "Update Account", "My Syncs"};
+        Adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
+        List.setAdapter(Adapter);
+    }
+
+    public void navBarItemClicked(int position) {
+        context = getApplicationContext();
+
+        if (position == 0) {
+            Intent intent = new Intent(context, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else if (position == 1) {
+            Intent intent = new Intent(context, AccountItemsClass.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else if (position == 2) {
+            Intent intent = new Intent(context, MySyncsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else {
+            //TODO: error
+        }
     }
 
 

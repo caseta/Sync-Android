@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +57,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ListView List;
     private ArrayAdapter<String> Adapter;
 
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstsanceState) {
         super.onCreate(savedInstsanceState);
@@ -69,6 +73,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 navBarItemClicked(position);
             }
         });
+
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("YEET", "navigation clicked");
+//            }
+//        });
 
         createNavMenu();
 

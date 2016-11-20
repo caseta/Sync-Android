@@ -35,7 +35,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.create_account_last_name) EditText lastName;
     @Bind(R.id.create_account_email) EditText email;
     @Bind(R.id.create_account_password) EditText password;
-    @Bind(R.id.create_account_confirm_password) EditText confirmPassword;
     @Bind(R.id.create_account_submit) Button submitButton;
 
     private FirebaseAuth firebaseAuth;
@@ -61,7 +60,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         context = getApplicationContext();
         int i = v.getId();
         if (i == R.id.create_account_submit) {
-            firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+
+            String emailText = email.getText().toString().replaceAll("\\s+","");
+            String passwordText = password.getText().toString().replaceAll("\\s+","");
+
+            firebaseAuth.createUserWithEmailAndPassword(emailText, passwordText)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                         @Override
