@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.GroupUser;
+import com.sync.taylorcase.sync.Home.HomeActivity;
 import com.sync.taylorcase.sync.MySyncs.MySyncsActivity;
 import com.sync.taylorcase.sync.R;
 import com.sync.taylorcase.sync.Sync;
@@ -99,7 +101,9 @@ public class JoinGroupActivity extends AppCompatActivity {
     }
 
     public void navigateToSyncs() {
-        Intent intent = new Intent(this, MySyncsActivity.class);
+        Toast.makeText(context, "Success! \nCheck the My Syncs Tab!", Toast.LENGTH_SHORT).show();
+        // home for now
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         startActivity(intent);
     }
