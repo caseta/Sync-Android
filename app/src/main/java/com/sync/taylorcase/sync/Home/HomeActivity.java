@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     //////////////////
 
     private void createNavMenu() {
-        String[] options = {"Home", "Update Account", "My Syncs"};
+        String[] options = {"Home", "My Syncs", "Join Group", "Create Group"};
         Adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, options);
         List.setAdapter(Adapter);
     }
@@ -127,15 +127,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             context.startActivity(intent);
         } else if (position == 1) {
-            Intent intent = new Intent(context, AccountItemsClass.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-            context.startActivity(intent);
-        } else if (position == 2) {
             Intent intent = new Intent(context, MySyncsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
             context.startActivity(intent);
+        } else if (position == 2) {
+            Intent intent = new Intent(context, JoinGroupActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
+        } else if (position == 3) {
+            Intent intent = new Intent(context, CreateGroupActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            context.startActivity(intent);
         } else {
-            //TODO: error
+
         }
     }
 
