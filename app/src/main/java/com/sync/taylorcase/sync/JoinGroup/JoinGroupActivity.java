@@ -179,8 +179,10 @@ public class JoinGroupActivity extends AppCompatActivity {
                         Sync mySync = new Sync(matchingItemsHash, theirFirstName, userIdsInGroup.get(i), groupName);
                         Sync theirSync = new Sync(matchingItemsHash, myFirstName, currentUserId, groupName);
 
-                        database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
-                        database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);
+//                        database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
+                        database.child("users").child(currentUserId).child("mySyncs").child(userIdsInGroup.get(i)).setValue(mySync);
+//                        database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);
+                        database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").child(currentUserId).setValue(theirSync);
 
                     }
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Karan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-80dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/sync_summary_name"
+        android:textAlignment="center"
+        android:textSize="32sp" />
+
+    <TextView
+        android:text="Google New Hires"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/sync_summary_group_name"
+        android:textSize="32sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="You Synced On:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sync_summary_label"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <TextView
+        android:text="Game of Thrones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/sync_summary_1"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Sigma Phi Epsilon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/sync_summary_2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="The Office"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sync_summary_3"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Ohio State"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/sync_summary_4"
+        android:textAlignment="center" />
+
+    <Button
+        android:text="Open Chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sync_summary_message_button" />
+</LinearLayout>

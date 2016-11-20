@@ -1,10 +1,12 @@
 package com.sync.taylorcase.sync.MySyncs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -14,7 +16,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sync.taylorcase.sync.Home.HomeActivity;
 import com.sync.taylorcase.sync.R;
+import com.sync.taylorcase.sync.SyncSummaryActivity;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,7 @@ public class MySyncsActivity extends AppCompatActivity {
     FirebaseAuth auth;
     ArrayList<String> groups;
     ArrayList<String> names;
+    ArrayList<String> ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,27 @@ public class MySyncsActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         populateDataHashMap();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                findViewById(R.id.choose_loading).setVisibility(View.VISIBLE);
+
+//                findViewById(R.id.choose_loading).setVisibility(View.GONE);
+
+                navigate(position);
+
+            }
+        });
+
+    }
+
+    public void navigate(int position) {
+        Intent intent = new Intent(this, SyncSummaryActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        intent.putExtra("ID", ids.get(position));
+
+        startActivity(intent);
     }
 
     public void populateDataHashMap() {
@@ -58,11 +84,15 @@ public class MySyncsActivity extends AppCompatActivity {
 
                 groups = new ArrayList<String>();
                 names = new ArrayList<String>();
+                ids = new ArrayList<String>();
 
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     Log.e("YEET", "data is: " + child);
                     String synchedName = child.child("personSyncedWith").getValue().toString();
                     names.add(synchedName);
+
+                    String id = child.child("personsUserId").getValue().toString();
+                    ids.add(id);
 
                     String groupName = child.child("groupName").getValue().toString();
                     groups.add(groupName);
