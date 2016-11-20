@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.sync.taylorcase.sync.GroupUser;
 import com.sync.taylorcase.sync.MySyncs.MySyncsActivity;
 import com.sync.taylorcase.sync.R;
+import com.sync.taylorcase.sync.Sync;
 
 import java.util.ArrayList;
 
@@ -130,6 +131,10 @@ public class JoinGroupActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                ArrayList<String> matchingItems = new ArrayList<String>();
+                ArrayList<String> myItems = new ArrayList<String>();
+                ArrayList<String> theirItems = new ArrayList<String>();
+
                 final String currentUserId = auth.getCurrentUser().getUid();
 
                 userIdsInGroup = new ArrayList<String>();
@@ -144,14 +149,28 @@ public class JoinGroupActivity extends AppCompatActivity {
                 // We have all user IDs, time to match
                 for (int i = 0; i < userIdsInGroup.size(); i++) {
 
-                    ArrayList<String> myItems = getItemsForUser(currentUserId, dataSnapshot);
-                    ArrayList<String> theirItems = getItemsForUser(userIdsInGroup.get(i), dataSnapshot);
+                    myItems = getItemsForUser(currentUserId, dataSnapshot);
+                    theirItems = getItemsForUser(userIdsInGroup.get(i), dataSnapshot);
 
-                    Log.e("BEEN_HAD_TAG", "my items: " + myItems);
-                    Log.e("BEEN_HAD_TAG", "their items: " + theirItems);
+                    matchingItems = matchItems(myItems, theirItems);
 
-                } // end of for(...)
+                    Log.e("BEEN_HAD_TAG", "matching items: " + matchingItems);
 
+                    if (matchingItems.size() > 0) {
+
+                        String myFirstName = dataSnapshot.child("users").child(currentUserId).child("firstName").getValue().toString();
+                        String theirFirstName = dataSnapshot.child("users").child(userIdsInGroup.get(i)).child("firstName").getValue().toString();
+
+                        Sync mySync = new Sync(matchingItems, theirFirstName);
+                        Sync theirSync = new Sync(matchingItems, myFirstName);
+
+                        database.child("users").child(currentUserId).child("mySyncs").push().setValue(mySync);
+                        database.child("users").child(userIdsInGroup.get(i)).child("mySyncs").push().setValue(theirSync);
+
+                    }
+
+
+                }
 
             }
 
@@ -174,6 +193,31 @@ public class JoinGroupActivity extends AppCompatActivity {
         }
         Log.e("BEEN_HAD", "about to return this listOfItems: " + listOfItems);
         return listOfItems;
+    }
+
+    public ArrayList<String> matchItems(ArrayList<String> myItems, ArrayList<String> theirItems) {
+
+        ArrayList<String> matchingItems = new ArrayList<>();
+
+        // for each of MY items
+        for (int i = 0; i < myItems.size(); i++) {
+
+            String myItem = myItems.get(i);
+
+            // check in the inner for look against each of THEIR items
+            for (int j = 0; j < theirItems.size(); j++) {
+
+                String theirItem = theirItems.get(j);
+
+                if (myItem == theirItem) {
+                    Log.e("BEEN_HAD_TAG", "These are the same!!: " + myItem + " " + theirItem);
+                    matchingItems.add(myItem);
+                }
+
+            }
+        }
+        Log.e("BEEN_HAD_TAG", "About to return this: " + matchingItems);
+        return matchingItems;
     }
 
 
