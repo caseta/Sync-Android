@@ -125,7 +125,7 @@ public class JoinGroupActivity extends AppCompatActivity {
 
     public void calculateSyncs(final String groupName) {
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
 
             //        database.child("groups").child(groupName).addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,7 +141,7 @@ public class JoinGroupActivity extends AppCompatActivity {
 
                 for (DataSnapshot user : dataSnapshot.child("groups").child(groupName).getChildren()) {
                     String userId = user.getKey();
-                    if (userId != currentUserId && currentUserId != "show") {
+                    if (!(userId.equals(currentUserId)) && (!(userId.equals("show")))) {
                         userIdsInGroup.add(userId);
                     }
                 }
@@ -154,7 +154,7 @@ public class JoinGroupActivity extends AppCompatActivity {
 
                     matchingItems = matchItems(myItems, theirItems);
 
-                    Log.e("BEEN_HAD_TAG", "matching items: " + matchingItems);
+                    Log.e("YEET", "matching items: " + matchingItems);
 
                     if (matchingItems.size() > 0) {
 
@@ -188,10 +188,10 @@ public class JoinGroupActivity extends AppCompatActivity {
 
         for (DataSnapshot item : snapshot.child("users").child(userId).child("myItems").getChildren()) {
             String itemName = item.getKey();
-            Log.e("BEEN_HAD", "adding: " + itemName);
+            Log.e("YEET", "adding: " + itemName);
             listOfItems.add(itemName);
         }
-        Log.e("BEEN_HAD", "about to return this listOfItems: " + listOfItems);
+        Log.e("YEET", "about to return this listOfItems: " + listOfItems);
         return listOfItems;
     }
 
@@ -209,14 +209,14 @@ public class JoinGroupActivity extends AppCompatActivity {
 
                 String theirItem = theirItems.get(j);
 
-                if (myItem == theirItem) {
-                    Log.e("BEEN_HAD_TAG", "These are the same!!: " + myItem + " " + theirItem);
+                if (myItem.equals(theirItem)) {
+                    Log.e("YEET", "These are the same!!: " + myItem + " " + theirItem);
                     matchingItems.add(myItem);
                 }
 
             }
         }
-        Log.e("BEEN_HAD_TAG", "About to return this: " + matchingItems);
+        Log.e("YEET", "About to return this: " + matchingItems);
         return matchingItems;
     }
 

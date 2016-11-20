@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Sync {
 
-    public ArrayList<String> matchingItems;
+//    public ArrayList<String> matchingItems;
+    public String firstMatch;
     public String personSyncedWith;
 
     public Sync() {
@@ -12,7 +13,7 @@ public class Sync {
     }
 
     public Sync(ArrayList<String> matchingItems, String personSyncedWith) {
-        this.matchingItems = matchingItems;
+        this.firstMatch = matchingItems.get(0);
         this.personSyncedWith = personSyncedWith;
     }
 
